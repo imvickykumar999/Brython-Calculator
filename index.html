@@ -1,58 +1,92 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brython</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/brython@3.8.9/brython.min.js">
-  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.js" integrity="sha256-rA89wPrTJJQFWJaZveKW8jpdmC3t5F9rRkPyBjz8G04=" crossorigin="anonymous"></script>
 
-  <script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/brython@3.8.9/brython_stdlib.js">
-  </script>
-
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-    crossorigin="anonymous">
-
-</head>
-  <body onload="brython()">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js" integrity="sha256-Gnrw9tIjrsXcZSCh/wos5Jrpn0bNVNFJuNJI9d71TDs=" crossorigin="anonymous"></script>
 
     <style>
-    body {
-        /* background-color: yellow; */
-        background-image: url(https://images.unsplash.com/photo-1573196872258-41425124bf5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
-        /* background-repeat: no-repeat; */
-    }
+        * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
+            padding: 30px;
+            line-height: 1.6;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 1px #ccc solid;
+      }
+
+      h2 {
+        margin-top: 20px;
+      }
+
+      button {
+        cursor: pointer;
+        display: block;
+        background: #333;
+        color: #fff;
+        border: 0;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin: 20px 0;
+      }
+
+      input[type="text"] {
+        border: 1px #ccc solid;
+        width: 300px;
+        padding: 4px;
+        height: 35px;
+        margin-top: 20px;
+      }
+
+      .card {
+        margin: 20px 0;
+        border: #ccc 1px solid;
+        padding: 20px;
+      }
+
     </style>
 
-    <script type="text/python">
+  <title>Calculator</title>
+</head>
 
-      from browser import document
+<body onload="brython()">
 
-      def calc(a, b, o):
-        d = { '+' : a+b,
-              '-' : a-b,
-              '*' : a*b,
-              '/' : a/b,
-              '%' : a%b
-            }
+    <h1>Calculator</h1>
+    <div id="lyrics" class="card">Output</div>
 
-        return f"({a}{o}{b})=({d[o]})"
+    <script type="text/python" id="script3">
 
-      a = float(input('Enter first number : '))
-      b = float(input('Enter second number : '))
-      o = input('Enter the Operator : ')
+        from browser import document
 
-      document <= calc(a, b, o)
+        def calc(a, b, o):
+          d = { '+' : a+b,
+                '-' : a-b,
+                '*' : a*b,
+                '/' : a/b,
+                '%' : a%b
+              }
 
+          return f"{a} {o} {b}  =  {d[o]}"
+
+        a = float(input('Enter first number : '))
+        b = float(input('Enter second number : '))
+        o = input('Enter the Operator (+,-,*,/,%) : ')
+
+        document['lyrics'].text =  calc(a, b, o)
     </script>
-  </body>
+
+</body>
 </html>
